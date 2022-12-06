@@ -5,7 +5,7 @@ import Heads from '../components/Heads';
 import Main from '../components/Main';
 
 import { ThemeProvider } from "next-themes";
-
+import { appWithTranslation } from 'next-i18next';
 //react
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -22,4 +22,4 @@ function App({ Component, pageProps }: AppProps) {
   )
 }
 
-export default App;
+export default appWithTranslation(App);

@@ -1,26 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+
+
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 import { useTheme } from "next-themes";
 
 import tw from "tailwind-styled-components";
-//interface
-
-interface TitleProps {
-    $large: boolean;
-}
 
 //type
 
 //style
-const Title = tw.h1<TitleProps>`
-    ${(p) => (p.$large ? "text-2xl" : "text-base")}
-    text-teal-500
-    font-bold
-`
+// interface TitleProps {
+//     $large: boolean;
+// }
+
+// const Title = tw.h1<TitleProps>`
+//     ${(p) => (p.$large ? "text-2xl" : "text-base")}
+//     text-teal-500
+//     font-bold
+// `
 
 // const SpecialBlueContainer = styled.section`
 //     background-color: #fff;
 // `
+
+
+const Title = tw.h1<any>`
+    text-teal-500
+    font-bold
+`
 
 const Layout = tw.header<any>`
     flex
@@ -30,26 +40,50 @@ const Layout = tw.header<any>`
     border-b
     p-4
 `
+
+interface Mode {
+    check:boolean;
+    name:string;
+}
 //react
-const ColorMode:React.FC = () => {
+const ColorMode: React.FC = () => {
+
     const { systemTheme, theme, setTheme } = useTheme();
-    
+    const [ mode, setMode] = useState<Mode>({
+        check:true, 
+        name:"dark"
+    });
+
+    const onClickButton = (check:boolean) => {
+        const name = check ? "dark" : "light";
+        const data:Mode = {
+            check:!check,
+            name:name
+        }
+        setMode(data);
+        setTheme(name);
+    }
+
     return (
-        <>
-            <button className="w-10 h-10" role="button" onClick={() => setTheme('light')} >light</button>
-            <button className="w-10 h-10" role="button" onClick={() => setTheme('dark')} >dark</button>
-        </>
+        <div className='flex justify-end p-5'>
+            <button
+                className='px-4 py-2 font-bold text-black dark:text-white bg-gray-100 dark:bg-gray-800 rounded'
+                onClick={() => onClickButton(mode.check)}
+            >
+                {mode.check ? <label>light</label> : <label>dark</label>}
+            </button>
+        </div>
     )
 }
 
 const Header: React.FC = () => {
-    
+
     return (
         <Layout>
-            <Title $large={true}>Title</Title>
-            <ColorMode />
+            <Title>title</Title>
+            <ColorMode></ColorMode>
         </Layout>
     )
-}
+};
 
 export default Header;
