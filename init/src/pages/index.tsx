@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { GetStaticProps } from 'next'
 
 const Index: React.FC = () => {
-    const { t } = useTranslation('index')
+    const { t } = useTranslation('index');
     return (
         <div>
             {t('content')}
