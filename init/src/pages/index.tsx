@@ -15,7 +15,7 @@ const Index: React.FC = () => {
 
 export const getStaticProps:GetStaticProps = async ({locale}) => ({
     props: {
-        ...(await serverSideTranslations(locale ?? "ko", ['index'])),
+        ...(await serverSideTranslations(locale ?? "", ['index'])),
     },
 })
 

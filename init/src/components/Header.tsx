@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
 import { useTheme } from "next-themes";
 
 import tw from "tailwind-styled-components";
-import { GetStaticProps } from 'next';
 
 //type
 
@@ -40,6 +39,11 @@ const Layout = tw.header<any>`
     p-4
 `
 
+const SideOptionLayout = tw.div<any>`
+    flex
+    space-x-2
+`
+
 interface Mode {
     check:boolean;
     name:string;
@@ -68,8 +72,35 @@ const ColorMode: React.FC = () => {
             className='px-4 py-2 font-bold text-black dark:text-white bg-gray-100 dark:bg-gray-800 rounded'
             onClick={() => onClickButton(mode.check)}
         >
-            {mode.check ? <label>light</label> : <label>dark</label>}
+            {mode.check ? <>light</> : <>dark</>}
         </button>
+    )
+}
+
+const LocaleMode: React.FC = () => {
+    const selectList = ["ko", "en"];
+    const router = useRouter();
+
+    const [selected , setSelected] = useState<string>("");
+
+    const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) =>{
+        const locale = e.target.value;
+        setSelected(locale);
+        router.replace(locale);
+    }
+
+    return (
+        <select 
+            className='border-gray-100 rounded border-transparent focus:border-transparent focus:ring-1 focus:ring-gray-300'
+            onChange={onChangeSelect}
+            value={selected}
+        >
+            {selectList.map((item) => (
+                <option value={item} key={item}>
+                    {item}
+                </option>
+          ))}
+        </select>
     )
 }
 
@@ -79,7 +110,10 @@ const Header: React.FC = () => {
     return (
         <Layout>
             <Title>{t('title')}</Title>
-            <ColorMode></ColorMode>
+            <SideOptionLayout>
+                <ColorMode />
+                <LocaleMode />
+            </SideOptionLayout>
         </Layout>
     )
 };
