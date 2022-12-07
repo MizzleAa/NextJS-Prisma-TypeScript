@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link';
 
 import { useTranslation } from 'next-i18next'
 
@@ -45,23 +46,23 @@ const SideOptionLayout = tw.div<any>`
 `
 
 interface Mode {
-    check:boolean;
-    name:string;
+    check: boolean;
+    name: string;
 }
 //react
 const ColorMode: React.FC = () => {
 
     const { systemTheme, theme, setTheme } = useTheme();
-    const [ mode, setMode] = useState<Mode>({
-        check:true, 
-        name:"dark"
+    const [mode, setMode] = useState<Mode>({
+        check: true,
+        name: "dark"
     });
 
-    const onClickButton = (check:boolean) => {
+    const onClickButton = (check: boolean) => {
         const name = check ? "dark" : "light";
-        const data:Mode = {
-            check:!check,
-            name:name
+        const data: Mode = {
+            check: !check,
+            name: name
         }
         setMode(data);
         setTheme(name);
@@ -81,26 +82,26 @@ const LocaleMode: React.FC = () => {
     const selectList = ["ko", "en"];
     const router = useRouter();
 
-    const [selected , setSelected] = useState<string>("");
-
-    const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) =>{
-        const locale = e.target.value;
-        setSelected(locale);
-        router.replace(locale);
-    }
-
     return (
-        <select 
-            className='border-gray-100 rounded border-transparent focus:border-transparent focus:ring-1 focus:ring-gray-300'
-            onChange={onChangeSelect}
-            value={selected}
-        >
-            {selectList.map((item) => (
-                <option value={item} key={item}>
-                    {item}
-                </option>
-          ))}
-        </select>
+        <>
+            <button
+                className="text-black bg-gray-300 flex justify-between items-center p-2 rounded"
+            >
+                <div>Language</div>
+                <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div className="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                    {
+                        selectList.map((data)=>(
+                            <li>
+                                <Link href={`/${data}`} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{data}</Link>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </>
     )
 }
 
