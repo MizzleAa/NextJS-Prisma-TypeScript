@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import Link from 'next/link';
 
 import { useTranslation } from 'next-i18next'
@@ -80,7 +79,6 @@ const ColorMode: React.FC = () => {
 
 const LocaleMode: React.FC = () => {
     const selectList = ["ko", "en"];
-    const router = useRouter();
 
     return (
         <>
@@ -96,6 +94,7 @@ const LocaleMode: React.FC = () => {
                         selectList.map((data)=>(
                             <li>
                                 <Link href={`/${data}`} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{data}</Link>
+                                
                             </li>
                         ))
                     }
