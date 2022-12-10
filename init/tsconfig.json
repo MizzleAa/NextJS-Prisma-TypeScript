@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2018",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,18 +17,37 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "src",
+    "paths": {
+      "#components/*": [
+        "./src/components/*"
+      ],
+      "#prisma/*": [
+        "./src/prisma/*"
+      ],
+      "#libs/*": [
+        "./src/libs/*"
+      ],
+      "#hook/*": [
+        "./src/hook/*"
+      ],
+      "#styles/*": [
+        "./src/styles/*"
+      ],
+      "#types/*": [
+        "./src/types/*"
+      ],
+    }
   },
-  "paths": {
-    "#components/*":["./src/components/*"],
-    "#prisma/*":["./src/prisma/*"],
-    "#lib/*":["./src/lib/*"],
-    "#hook/*":["./src/hook/*"],
-    "#styles/*":["./src/styles/*"],
-    "#types/*":["./src/types/*"],
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"

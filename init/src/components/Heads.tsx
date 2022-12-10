@@ -8,7 +8,7 @@ const Heads = () => {
                 name="description"
                 content="Sample Description"
             />
-            <title>title</title>
+            <title>Title</title>
         </Head>
     )
 }

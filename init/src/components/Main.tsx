@@ -11,26 +11,25 @@ type ChildrenComponentProps = {
 
 
 //style
-const Layout = tw.div<any>`
-    sm:flex md:flex lg:flex xl:flex 2xl:flex
+const Position = tw.div<any>`
+    absolute inset-y-16
     w-full
-    h-full
+    overflow-auto
+`
+const Layout = tw.div<any>`
+    flex
+    container mx-auto
 `
 
-const Content = tw.div<any>`
-    p-4
-    w-full
-    border
-    xs:h-full
-`
 //react
 const Main = ({children} : ChildrenComponentProps) => {
     return (
-        <Layout>
-            <Content>
+        <Position>
+            <Layout>
                 {children}
-            </Content>
-        </Layout>
+            </Layout>
+        </Position>
+        
     )
 }
 

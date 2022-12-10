@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index: React.FC = () => {
     const { t } = useTranslation('index');
@@ -15,8 +15,8 @@ const Index: React.FC = () => {
 
 export const getStaticProps:GetStaticProps = async ({locale}) => ({
     props: {
-        ...(await serverSideTranslations(locale ?? "", ['index'])),
+        ...(await serverSideTranslations(locale ?? "ko", ['common','index'])),
     },
-})
+  })
 
 export default Index;
