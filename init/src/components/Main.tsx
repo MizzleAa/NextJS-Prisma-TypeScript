@@ -19,6 +19,7 @@ const Position = tw.div<any>`
 const Layout = tw.div<any>`
     flex
     container mx-auto
+    xl:px-36
 `
 
 //react

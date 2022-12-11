@@ -250,6 +250,7 @@ const Layout = tw.nav<any>`
     
     w-full h-full
     container mx-auto
+    xl:px-36
 `;
 
 const SideOptionLayout = tw.div<any>`

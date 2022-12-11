@@ -31,6 +31,7 @@ const Layout = tw.div<any>`
 
     w-full h-full
     container mx-auto
+    xl:px-36
 `;
 
 const CopyrightText = tw.p<any>`
